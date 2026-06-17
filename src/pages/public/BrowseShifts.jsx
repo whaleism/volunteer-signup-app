@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import EmptyState from "../../components/EmptyState";
 
 const fakeShifts = [
@@ -41,13 +42,23 @@ export default function BrowseShifts() {
       {fakeShifts.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 max-w-5xl mx-auto">
+        <div
+          role="list"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 max-w-5xl mx-auto"
+        >
           {fakeShifts.map((shift) => {
             const remaining = shift.slots_available - shift.slots_taken;
 
             return (
-              <div key={shift.id} className="bg-white rounded-xl shadow-md p-6">
-                <span className="inline-block bg-[#e8f5f0] text-[#2d8c6e] text-xs font-semibold px-3 py-1 rounded-full mb-3">
+              <div
+                key={shift.id}
+                role="listitem"
+                className="bg-white rounded-xl shadow-md p-6"
+              >
+                <span
+                  role="status"
+                  className="inline-block bg-[#e8f5f0] text-[#2d8c6e] text-xs font-semibold px-3 py-1 rounded-full mb-3"
+                >
                   Upcoming
                 </span>
                 <h2 className="text-xl font-bold text-[#1a2e28] mb-2">
@@ -61,6 +72,11 @@ export default function BrowseShifts() {
                 </p>
                 <button
                   disabled={remaining === 0}
+                  aria-label={
+                    remaining === 0
+                      ? `${shift.title} is full`
+                      : `Sign up for ${shift.title}`
+                  }
                   className={
                     remaining === 0
                       ? "bg-gray-200 text-gray-400 px-4 py-2 rounded-lg cursor-not-allowed w-full"
