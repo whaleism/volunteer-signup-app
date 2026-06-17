@@ -7,6 +7,8 @@ import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import CreateShift from "./pages/admin/CreateShift.jsx";
 import ShiftDetail from "./pages/admin/ShiftDetail.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
 
 export default function App() {
   return (
@@ -16,10 +18,38 @@ export default function App() {
           <Route path="/" element={<BrowseShifts />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/my-shifts" element={<MyShifts />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/shifts/new" element={<CreateShift />} />
-          <Route path="/admin/shifts/:id" element={<ShiftDetail />} />
+          <Route
+            path="/my-shifts"
+            element={
+              <ProtectedRoute>
+                <MyShifts />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/shifts/new"
+            element={
+              <AdminRoute>
+                <CreateShift />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/shifts/:id"
+            element={
+              <AdminRoute>
+                <ShiftDetail />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
