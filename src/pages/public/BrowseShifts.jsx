@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import EmptyState from "../../components/EmptyState";
+import SkeletonCard from "../../components/SkeletonCard";
+import { getShiftDay } from "../../lib/dateHelper";
 
 const fakeShifts = [
   {
@@ -13,7 +15,7 @@ const fakeShifts = [
   {
     id: 2,
     title: "Community Cleanup",
-    date: "2026-07-12",
+    date: "2026-07-14",
     time: "10:00 AM",
     slots_available: 3,
     slots_taken: 3,
@@ -21,7 +23,7 @@ const fakeShifts = [
   {
     id: 3,
     title: "Food Drive - Afternoon Shift",
-    date: "2026-07-15",
+    date: "2026-07-30",
     time: "1:00 PM",
     slots_available: 4,
     slots_taken: 1,
@@ -29,8 +31,22 @@ const fakeShifts = [
 ];
 
 export default function BrowseShifts() {
+  const [loading, setLoading] = useState(false);
+  const [selectedDay, setSelectedDay] = useState("all");
+
+  const filteredShifts = fakeShifts.filter((shift) => {
+    if (selectedDay === "all") {
+      return true;
+    } else if (getShiftDay(shift.date) === selectedDay) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   return (
     <div className="bg-[#f0f7f4] min-h-screen">
+      {/* Header */}
       <div className="max-w-5xl mx-auto px-8 pt-12 pb-4">
         <h1 className="text-3xl font-bold text-[#1a2e28] mb-2">
           Upcoming Volunteer Shifts
@@ -39,14 +55,53 @@ export default function BrowseShifts() {
           Find a shift that fits your schedule and sign up to help out.
         </p>
       </div>
-      {fakeShifts.length === 0 ? (
+      <div className="flex gap-3 max-w-5xl mx-auto px-8 mb-6">
+        <button
+          onClick={() => setSelectedDay("all")}
+          className={
+            selectedDay === "all"
+              ? "bg-[#2d8c6e] text-white px-4 py-2 rounded-lg"
+              : "bg-[#e8f5f0] text-[#2d8c6e] px-4 py-2 rounded-lg"
+          }
+        >
+          All
+        </button>
+        <button
+          onClick={() => setSelectedDay("Tuesday")}
+          className={
+            selectedDay === "Tuesday"
+              ? "bg-[#2d8c6e] text-white px-4 py-2 rounded-lg"
+              : "bg-[#e8f5f0] text-[#2d8c6e] px-4 py-2 rounded-lg"
+          }
+        >
+          Tuesday
+        </button>
+        <button
+          onClick={() => setSelectedDay("Friday")}
+          className={
+            selectedDay === "Friday"
+              ? "bg-[#2d8c6e] text-white px-4 py-2 rounded-lg"
+              : "bg-[#e8f5f0] text-[#2d8c6e] px-4 py-2 rounded-lg"
+          }
+        >
+          Friday
+        </button>
+      </div>
+
+      {loading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 max-w-5xl mx-auto">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <SkeletonCard key={index} />
+          ))}
+        </div>
+      ) : fakeShifts.length === 0 ? (
         <EmptyState />
       ) : (
         <div
           role="list"
           className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 max-w-5xl mx-auto"
         >
-          {fakeShifts.map((shift) => {
+          {filteredShifts.map((shift) => {
             const remaining = shift.slots_available - shift.slots_taken;
 
             return (
