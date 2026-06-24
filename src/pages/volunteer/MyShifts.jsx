@@ -31,7 +31,13 @@ export default function MyShifts() {
   ]);
 
   function handleCancel(signupId) {
-    setMyShifts(myShifts.filter((signup) => signup.signupId !== signupId));
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this shift?",
+    );
+
+    if (confirmed) {
+      setMyShifts(myShifts.filter((signup) => signup.signupId !== signupId));
+    }
   }
 
   return (
@@ -63,32 +69,39 @@ export default function MyShifts() {
           <h2 className="text-xl font-bold text-[#1a2e28] mb-2">
             My Upcoming Shifts
           </h2>
-          <EmptyState
-            title="You haven't signed up for any shifts yet"
-            message="Browse available shifts and sign up to get started."
-          />
-          {myShifts.map((signup) => (
-            <div
-              key={signup.signupId}
-              className="bg-white rounded-xl shadow-md p-4 mb-4 flex items-center justify-between"
-            >
-              <div>
-                <h3 className="font-bold text-[#1a2e28]">
-                  {signup.shift.title}
-                </h3>
-                <p className="text-sm text-[#6b8f84]">
-                  {getShiftDay(signup.shift.date)}, {signup.shift.date} ·{" "}
-                  {signup.shift.time}
-                </p>
-              </div>
-              <button
-                onClick={() => handleCancel(signup.signupId)}
-                className="text-sm text-red-500 font-medium hover:underline"
-              >
-                Cancel
-              </button>
+          {myShifts.length === 0 ? (
+            <EmptyState
+              title="You haven't signed up for any shifts yet"
+              message="Browse available shifts and sign up to get started."
+            />
+          ) : (
+            <div role="list">
+              {myShifts.map((signup) => (
+                <div
+                  key={signup.signupId}
+                  role="listitem"
+                  className="bg-white rounded-xl shadow-md p-4 mb-4 flex items-center justify-between"
+                >
+                  <div>
+                    <h3 className="font-bold text-[#1a2e28]">
+                      {signup.shift.title}
+                    </h3>
+                    <p className="text-sm text-[#6b8f84]">
+                      {getShiftDay(signup.shift.date)}, {signup.shift.date} ·{" "}
+                      {signup.shift.time}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => handleCancel(signup.signupId)}
+                    aria-label={`Cancel ${signup.shift.title}`}
+                    className="text-sm text-red-500 font-medium hover:underline"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
