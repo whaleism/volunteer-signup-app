@@ -21,9 +21,9 @@ export default function App() {
           <Route
             path="/my-shifts"
             element={
-              // <ProtectedRoute>
-              <MyShifts />
-              // </ProtectedRoute>
+              <ProtectedRoute>
+                <MyShifts />
+              </ProtectedRoute>
             }
           />
           <Route
