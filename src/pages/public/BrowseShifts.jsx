@@ -95,7 +95,10 @@ export default function BrowseShifts() {
           ))}
         </div>
       ) : fakeShifts.length === 0 ? (
-        <EmptyState />
+        <EmptyState
+          title="No upcoming shifts right now"
+          message="Check back soon - new opportunities are posted regularly."
+        />
       ) : (
         <div
           role="list"

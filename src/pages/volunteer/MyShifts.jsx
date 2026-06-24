@@ -1,5 +1,6 @@
 import { use, useState } from "react";
 import { getShiftDay } from "../../lib/dateHelper";
+import EmptyState from "../../components/EmptyState";
 
 const fakeVolunteer = {
   name: "Jane Smith",
@@ -62,6 +63,10 @@ export default function MyShifts() {
           <h2 className="text-xl font-bold text-[#1a2e28] mb-2">
             My Upcoming Shifts
           </h2>
+          <EmptyState
+            title="You haven't signed up for any shifts yet"
+            message="Browse available shifts and sign up to get started."
+          />
           {myShifts.map((signup) => (
             <div
               key={signup.signupId}
