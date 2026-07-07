@@ -37,9 +37,17 @@ export default function App() {
           <Route
             path="/admin/shifts/new"
             element={
-              <AdminRoute>
-                <CreateShift />
-              </AdminRoute>
+              //<AdminRoute>
+              <CreateShift />
+              //</AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/shifts/:id/edit"
+            element={
+              //<AdminRoute>
+              <CreateShift />
+              //</AdminRoute>
             }
           />
           <Route
