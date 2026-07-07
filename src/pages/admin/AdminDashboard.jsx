@@ -74,12 +74,14 @@ export default function AdminDashboard() {
       <div className="flex gap-3 max-w-5xl mx-auto px-8 mb-6">
         <button
           onClick={handleCreateShift}
+          aria-label="Create a new volunteer shift"
           className="bg-[#e8f5f0] text-[#2d8c6e] px-4 py-2 rounded-lg"
         >
           Create a new shift
         </button>
         <button
           onClick={() => setSelectedDay("all")}
+          aria-pressed={selectedDay === "all"}
           className={
             selectedDay === "all"
               ? "bg-[#2d8c6e] text-white px-4 py-2 rounded-lg"
@@ -90,6 +92,7 @@ export default function AdminDashboard() {
         </button>
         <button
           onClick={() => setSelectedDay("Tuesday")}
+          aria-pressed={selectedDay === "Tuesday"}
           className={
             selectedDay === "Tuesday"
               ? "bg-[#2d8c6e] text-white px-4 py-2 rounded-lg"
@@ -100,6 +103,7 @@ export default function AdminDashboard() {
         </button>
         <button
           onClick={() => setSelectedDay("Friday")}
+          aria-pressed={selectedDay === "Friday"}
           className={
             selectedDay === "Friday"
               ? "bg-[#2d8c6e] text-white px-4 py-2 rounded-lg"
@@ -134,6 +138,11 @@ export default function AdminDashboard() {
                 key={shift.id}
                 role="listitem"
                 onClick={() => navigate(`/admin/shifts/${shift.id}`)}
+                aria-label={`View details for ${shift.title}`}
+                tabIndex={0}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && navigate(`/admin/shifts/${shift.id}`)
+                }
                 className="bg-white rounded-xl shadow-md p-6 cursor-pointer hover:shadow-lg transition"
               >
                 <h2 className="text-xl font-bold text-[#1a2e28] mb-2">

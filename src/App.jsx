@@ -45,9 +45,9 @@ export default function App() {
           <Route
             path="/admin/shifts/:id"
             element={
-              <AdminRoute>
-                <ShiftDetail />
-              </AdminRoute>
+              //<AdminRoute>
+              <ShiftDetail />
+              //</AdminRoute>
             }
           />
         </Routes>
