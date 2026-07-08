@@ -21,41 +21,41 @@ export default function App() {
           <Route
             path="/my-shifts"
             element={
-              //<ProtectedRoute>
-              <MyShifts />
-              //</ProtectedRoute>
+              <ProtectedRoute>
+                <MyShifts />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/admin"
             element={
-              //<AdminRoute>
-              <AdminDashboard />
-              //</AdminRoute>
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
             }
           />
           <Route
             path="/admin/shifts/new"
             element={
-              //<AdminRoute>
-              <CreateShift />
-              //</AdminRoute>
+              <AdminRoute>
+                <CreateShift />
+              </AdminRoute>
             }
           />
           <Route
             path="/admin/shifts/:id/edit"
             element={
-              //<AdminRoute>
-              <CreateShift />
-              //</AdminRoute>
+              <AdminRoute>
+                <CreateShift />
+              </AdminRoute>
             }
           />
           <Route
             path="/admin/shifts/:id"
             element={
-              //<AdminRoute>
-              <ShiftDetail />
-              //</AdminRoute>
+              <AdminRoute>
+                <ShiftDetail />
+              </AdminRoute>
             }
           />
         </Routes>
