@@ -36,16 +36,16 @@ export default function Signup() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden">
       {/* Left Panel */}
-      <div className="hidden md:flex items-center justify-center h-full w-1/2 bg-gradient-to-br from-[#1a2e28] to-[#2d8c6e]">
+      <div className="hidden lg:flex items-center justify-center h-full flex-1 bg-gradient-to-br from-[#1a2e28] to-[#2d8c6e]">
         <h1 className="text-3xl font-bold text-white">
           Non-profit Organization
         </h1>
       </div>
 
       {/* Right Panel */}
-      <div className="w-full md:w-1/2 px-12 py-12 overflow-y-auto">
+      <div className="flex-1 px-12 py-12 overflow-y-auto">
         <h1 className="text-3xl font-bold text-[#1a2e28] mb-2">
           Create an account
         </h1>

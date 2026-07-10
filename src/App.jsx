@@ -9,56 +9,60 @@ import ShiftDetail from "./pages/admin/ShiftDetail.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import AdminRoute from "./components/AdminRoute.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<BrowseShifts />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/my-shifts"
-            element={
-              <ProtectedRoute>
-                <MyShifts />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="/admin/shifts/new"
-            element={
-              <AdminRoute>
-                <CreateShift />
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="/admin/shifts/:id/edit"
-            element={
-              <AdminRoute>
-                <CreateShift />
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="/admin/shifts/:id"
-            element={
-              <AdminRoute>
-                <ShiftDetail />
-              </AdminRoute>
-            }
-          />
-        </Routes>
+        <Navbar />
+        <div className="md:ml-64">
+          <Routes>
+            <Route path="/" element={<BrowseShifts />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/my-shifts"
+              element={
+                <ProtectedRoute>
+                  <MyShifts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/shifts/new"
+              element={
+                <AdminRoute>
+                  <CreateShift />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/shifts/:id/edit"
+              element={
+                <AdminRoute>
+                  <CreateShift />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/shifts/:id"
+              element={
+                <AdminRoute>
+                  <ShiftDetail />
+                </AdminRoute>
+              }
+            />
+          </Routes>
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );
