@@ -107,7 +107,7 @@ src/
 ## Local Development
 
 ```bash
-git clone https://github.com/tba/tba
+git clone https://github.com/whaleism/volunteer-signup-app
 npm install
 npm run dev
 ```
