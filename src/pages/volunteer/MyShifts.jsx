@@ -3,8 +3,8 @@ import { getShiftDay } from "../../lib/dateHelper";
 import EmptyState from "../../components/EmptyState";
 
 const fakeVolunteer = {
-  name: "Jane Smith",
-  email: "jane.smith@email.com",
+  name: "Elena Vance",
+  email: "elena.vance@email.com",
   phone: "773-555-1234",
 };
 

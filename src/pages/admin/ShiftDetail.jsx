@@ -11,16 +11,16 @@ const fakeShiftDetail = {
     {
       signupId: 101,
       volunteer: {
-        name: "Jane Smith",
-        email: "jane@email.com",
+        name: "Elena Vance",
+        email: "elena.vance@email.com",
         phone: "773-555-1234",
       },
     },
     {
       signupId: 102,
       volunteer: {
-        name: "John Doe",
-        email: "john@email.com",
+        name: "Julian Beck",
+        email: "julian@email.com",
         phone: "773-555-5678",
       },
     },
